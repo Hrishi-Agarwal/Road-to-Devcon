@@ -313,8 +313,8 @@ function connectWallet() {
     </div>
 
     <p style="color:var(--muted)">
-      Choose a simulated identity for this frontend prototype.
-    </p>
+  Connect your MetaMask wallet to participate in on-chain voting.
+</p>
 
     <div class="form-grid">
 
