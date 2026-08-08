@@ -297,10 +297,10 @@ function closeModal() {
 // WALLET
 // ==========================================
 
-function connectWallet() {
-    openModal(`
-    <div class="modal-head">
+function showWalletChoice() {
+  openModal(`
 
+    <div class="modal-head">
       <h2>Connect Wallet</h2>
 
       <button
@@ -309,49 +309,65 @@ function connectWallet() {
       >
         ×
       </button>
-
     </div>
 
     <p style="color:var(--muted)">
-  Connect your MetaMask wallet to participate in on-chain voting.
-</p>
+      Choose how you want to use DecentraSignal.
+    </p>
 
     <div class="form-grid">
-
-      <button
-        class="btn btn-secondary"
-        onclick="demoConnect('MetaMask')"
-      >
-        🦊 MetaMask
-        <small>simulation</small>
-      </button>
-
-      <button
-        class="btn btn-secondary"
-        onclick="demoConnect('WalletConnect')"
-      >
-        ◈ WalletConnect
-        <small>simulation</small>
-      </button>
 
       <button
         class="btn btn-primary"
         onclick="demoConnect('Demo Wallet')"
       >
         ◉ Demo Wallet
+        <small>
+          No setup required · Explore the app
+        </small>
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        onclick="connectMetaMask()"
+      >
+        🦊 MetaMask Wallet
+        <small>
+          Real Sepolia voting · Requires MetaMask
+        </small>
       </button>
 
     </div>
 
-    <p
-      class="prototype-note"
-      style="margin-top:20px"
+    <div
+      style="
+        margin-top:20px;
+        padding:15px;
+        border:1px solid var(--line);
+        border-radius:12px;
+        color:var(--muted);
+        font-size:12px;
+        line-height:1.6
+      "
     >
-      No real wallet or blockchain connection is made.
-    </p>
+      <strong style="color:#fff">
+        Demo Wallet
+      </strong><br>
+      Fake wallet for exploring the interface.
+      No installation, wallet or test ETH required.
+
+      <br><br>
+
+      <strong style="color:#fff">
+        MetaMask Wallet
+      </strong><br>
+      Real blockchain wallet connected to Ethereum
+      Sepolia. Requires MetaMask and Sepolia test ETH.
+      No real-world funds are used.
+    </div>
+
   `);
 }
-
 
 function demoConnect(provider) {
     state.wallet = "0x7A3...91F2";
@@ -391,7 +407,7 @@ function updateWallet() {
 
     walletButton.onclick = state.wallet
         ? walletMenu
-        : connectWallet;
+        : showWalletChoice;
 
     const profileWallet =
         document.getElementById("profileWallet");
@@ -1919,7 +1935,7 @@ let votingContract = null;
 // REAL METAMASK CONNECTION
 // ==========================================
 
-async function connectWallet() {
+async function connectMetaMask() {
 
     if (!window.ethereum) {
         toast(
