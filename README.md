@@ -4,7 +4,7 @@ A decentralized voting and coordination platform built on Ethereum Sepolia.
 
 ## 🚀 Live Demo
 
-**[Open DecentraSignal](https://hrishi-agarwal.github.io/Road-to-Devcon/)**
+[Open DecentraSignal](https://hrishi-agarwal.github.io/Road-to-Devcon/)
 
 The live demo runs on the Ethereum Sepolia testnet.
 
@@ -23,7 +23,7 @@ To create a proposal or vote:
 1. Install the MetaMask browser extension.
 2. Switch MetaMask to the **Sepolia** test network.
 3. Make sure your wallet has some **SepoliaETH test ETH**.
-4. Open the Live Demo.
+4. Open the [Live Demo](https://hrishi-agarwal.github.io/Road-to-Devcon/).
 5. Click **Connect Wallet**.
 6. Approve the MetaMask connection.
 7. Create a proposal or open an active proposal.
@@ -41,7 +41,7 @@ To create a proposal or vote:
 
 `0x3ff2dE84542C4cDb759a62c4eF4F2324E6B635EF`
 
-The contract handles:
+The smart contract handles:
 
 - Proposal creation
 - Vote submission
@@ -58,7 +58,7 @@ The core voting flow is deployed and tested on Sepolia:
 - Duplicate-vote prevention
 - Blockchain contract interaction
 
-Additional coordination, analytics and visualization features in the interface are experimental demonstrations and are not all implemented as smart-contract logic.
+Additional coordination, analytics, and visualization features in the interface are experimental demonstrations and are not all implemented as smart-contract logic.
 
 ## 🛠️ Tech Stack
 
@@ -69,12 +69,39 @@ Additional coordination, analytics and visualization features in the interface a
 - ethers.js
 - MetaMask
 - Ethereum Sepolia
+- GitHub Pages
+
+## 💻 Run Locally
+
+Clone or download the repository.
+
+Open the project using a local web server such as **VS Code Live Server**.
+
+Do not open `index.html` directly as a `file://` URL because browser wallet providers may not be injected correctly.
+
+Then open the localhost URL provided by the local server.
+
+## 🔗 Deployment
+
+The frontend is hosted using GitHub Pages.
+
+The smart contract is deployed independently on Ethereum Sepolia, so the application does not depend on a local blockchain or the developer's computer.
+
+**Live application:**  
+[Open DecentraSignal](https://hrishi-agarwal.github.io/Road-to-Devcon/)
+
+## ⚠️ Testnet Notice
+
+This project uses the Ethereum Sepolia testnet for demonstration purposes.
+
+No real funds are required or used.
+
+SepoliaETH is test ETH and has no real-world value.
 
 ## 📁 Project Structure
 
 ```text
 Road-to-Devcon/
-│
 ├── index.html
 ├── style.css
 ├── script.js
