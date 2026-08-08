@@ -1,84 +1,84 @@
 const STORAGE = "decentraSignalState";
 
 const defaultProposals = [
-  {
-    id: "P-7A2F",
-    title: "Should our community fund open-source infrastructure?",
-    description:
-      "Allocate community resources toward public developer infrastructure and open-source tooling.",
-    creator: "0x91A...7C2D",
-    status: "active",
-    participants: 184,
-    deadline: "Aug 12, 2026",
-    mechanism: "Commit-Reveal",
-    consensus: null,
-    options: ["YES", "NO", "ABSTAIN"]
-  },
-  {
-    id: "P-4C19",
-    title: "Which public-good project should receive funding?",
-    description:
-      "Signal which category should receive the next community public-goods grant.",
-    creator: "0x3B8...A91E",
-    status: "completed",
-    participants: 426,
-    deadline: "Aug 04, 2026",
-    mechanism: "Quadratic Signal",
-    consensus: 78,
-    options: ["Education", "Climate", "Infrastructure", "Research"]
-  },
-  {
-    id: "P-91DE",
-    title: "Should the community adopt a new governance rule?",
-    description:
-      "A proposed governance change designed to make coordination more transparent.",
-    creator: "0x7F2...C812",
-    status: "upcoming",
-    participants: 0,
-    deadline: "Aug 18, 2026",
-    mechanism: "Equal Signal",
-    consensus: null,
-    options: ["YES", "NO"]
-  },
-  {
-    id: "P-22BA",
-    title: "Adopt a shared open-source contributor fund?",
-    description:
-      "Create a transparent pool to support contributors maintaining public goods.",
-    creator: "0x5D0...18F1",
-    status: "active",
-    participants: 267,
-    deadline: "Aug 15, 2026",
-    mechanism: "Commit-Reveal",
-    consensus: null,
-    options: ["YES", "NO", "ABSTAIN"]
-  },
-  {
-    id: "P-6E4B",
-    title: "Community research priorities for Q4",
-    description:
-      "Signal the research direction that should receive community attention.",
-    creator: "0x2E1...4FA0",
-    status: "completed",
-    participants: 318,
-    deadline: "Jul 29, 2026",
-    mechanism: "Equal Signal",
-    consensus: 71,
-    options: ["AI", "Climate", "Privacy", "Infrastructure"]
-  },
-  {
-    id: "P-88CC",
-    title: "Create a decentralized local events fund?",
-    description:
-      "Should the community allocate funds to permissionless local meetups and workshops?",
-    creator: "0xAA1...C201",
-    status: "active",
-    participants: 89,
-    deadline: "Aug 20, 2026",
-    mechanism: "Quadratic Signal",
-    consensus: null,
-    options: ["YES", "NO", "ABSTAIN"]
-  }
+    {
+        id: "P-7A2F",
+        title: "Should our community fund open-source infrastructure?",
+        description:
+            "Allocate community resources toward public developer infrastructure and open-source tooling.",
+        creator: "0x91A...7C2D",
+        status: "active",
+        participants: 184,
+        deadline: "Aug 12, 2026",
+        mechanism: "Commit-Reveal",
+        consensus: null,
+        options: ["YES", "NO", "ABSTAIN"]
+    },
+    {
+        id: "P-4C19",
+        title: "Which public-good project should receive funding?",
+        description:
+            "Signal which category should receive the next community public-goods grant.",
+        creator: "0x3B8...A91E",
+        status: "completed",
+        participants: 426,
+        deadline: "Aug 04, 2026",
+        mechanism: "Quadratic Signal",
+        consensus: 78,
+        options: ["Education", "Climate", "Infrastructure", "Research"]
+    },
+    {
+        id: "P-91DE",
+        title: "Should the community adopt a new governance rule?",
+        description:
+            "A proposed governance change designed to make coordination more transparent.",
+        creator: "0x7F2...C812",
+        status: "upcoming",
+        participants: 0,
+        deadline: "Aug 18, 2026",
+        mechanism: "Equal Signal",
+        consensus: null,
+        options: ["YES", "NO"]
+    },
+    {
+        id: "P-22BA",
+        title: "Adopt a shared open-source contributor fund?",
+        description:
+            "Create a transparent pool to support contributors maintaining public goods.",
+        creator: "0x5D0...18F1",
+        status: "active",
+        participants: 267,
+        deadline: "Aug 15, 2026",
+        mechanism: "Commit-Reveal",
+        consensus: null,
+        options: ["YES", "NO", "ABSTAIN"]
+    },
+    {
+        id: "P-6E4B",
+        title: "Community research priorities for Q4",
+        description:
+            "Signal the research direction that should receive community attention.",
+        creator: "0x2E1...4FA0",
+        status: "completed",
+        participants: 318,
+        deadline: "Jul 29, 2026",
+        mechanism: "Equal Signal",
+        consensus: 71,
+        options: ["AI", "Climate", "Privacy", "Infrastructure"]
+    },
+    {
+        id: "P-88CC",
+        title: "Create a decentralized local events fund?",
+        description:
+            "Should the community allocate funds to permissionless local meetups and workshops?",
+        creator: "0xAA1...C201",
+        status: "active",
+        participants: 89,
+        deadline: "Aug 20, 2026",
+        mechanism: "Quadratic Signal",
+        consensus: null,
+        options: ["YES", "NO", "ABSTAIN"]
+    }
 ];
 
 let state = loadState();
@@ -89,58 +89,58 @@ let state = loadState();
 // ==========================================
 
 function loadState() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE));
+    try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE));
 
-    if (saved) {
-      return {
-        ...saved,
-        proposals:
-          saved.proposals && saved.proposals.length
-            ? saved.proposals
-            : structuredClone(defaultProposals)
-      };
+        if (saved) {
+            return {
+                ...saved,
+                proposals:
+                    saved.proposals && saved.proposals.length
+                        ? saved.proposals
+                        : structuredClone(defaultProposals)
+            };
+        }
+    } catch (error) {
+        console.error("Could not load saved state:", error);
     }
-  } catch (error) {
-    console.error("Could not load saved state:", error);
-  }
 
-  return {
-    wallet: null,
-    proposals: structuredClone(defaultProposals),
+    return {
+        wallet: null,
+        proposals: structuredClone(defaultProposals),
 
-    commitments: {},
+        commitments: {},
 
-    activity: [
-      {
-        text: "Vote committed",
-        time: "2 minutes ago"
-      },
-      {
-        text: "Vote revealed",
-        time: "5 minutes ago"
-      },
-      {
-        text: "Proposal created",
-        time: "12 minutes ago"
-      },
-      {
-        text: "Consensus finalized",
-        time: "1 hour ago"
-      }
-    ],
+        activity: [
+            {
+                text: "Vote committed",
+                time: "2 minutes ago"
+            },
+            {
+                text: "Vote revealed",
+                time: "5 minutes ago"
+            },
+            {
+                text: "Proposal created",
+                time: "12 minutes ago"
+            },
+            {
+                text: "Consensus finalized",
+                time: "1 hour ago"
+            }
+        ],
 
-    stats: {
-      created: 3,
-      submitted: 8,
-      revealed: 7
-    }
-  };
+        stats: {
+            created: 3,
+            submitted: 8,
+            revealed: 7
+        }
+    };
 }
 
 
 function save() {
-  localStorage.setItem(STORAGE, JSON.stringify(state));
+    localStorage.setItem(STORAGE, JSON.stringify(state));
 }
 
 
@@ -149,35 +149,35 @@ function save() {
 // ==========================================
 
 function esc(value) {
-  return String(value).replace(/[&<>"']/g, function (char) {
-    const map = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#039;"
-    };
+    return String(value).replace(/[&<>"']/g, function (char) {
+        const map = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        };
 
-    return map[char];
-  });
+        return map[char];
+    });
 }
 
 
 function toast(message, success = true) {
-  const container = document.getElementById("toastContainer");
+    const container = document.getElementById("toastContainer");
 
-  const toastElement = document.createElement("div");
+    const toastElement = document.createElement("div");
 
-  toastElement.className =
-    "toast" + (success ? " success" : "");
+    toastElement.className =
+        "toast" + (success ? " success" : "");
 
-  toastElement.textContent = message;
+    toastElement.textContent = message;
 
-  container.appendChild(toastElement);
+    container.appendChild(toastElement);
 
-  setTimeout(() => {
-    toastElement.remove();
-  }, 3000);
+    setTimeout(() => {
+        toastElement.remove();
+    }, 3000);
 }
 
 
@@ -186,17 +186,17 @@ function toast(message, success = true) {
 // ==========================================
 
 function renderProposals(filter = "all") {
-  const grid = document.getElementById("proposalGrid");
+    const grid = document.getElementById("proposalGrid");
 
-  if (!grid) return;
+    if (!grid) return;
 
-  const proposals = state.proposals.filter((proposal) => {
-    return filter === "all" || proposal.status === filter;
-  });
+    const proposals = state.proposals.filter((proposal) => {
+        return filter === "all" || proposal.status === filter;
+    });
 
-  grid.innerHTML = proposals
-    .map((proposal) => {
-      return `
+    grid.innerHTML = proposals
+        .map((proposal) => {
+            return `
         <article class="proposal-card glass">
 
           <span class="status ${proposal.status}">
@@ -243,9 +243,8 @@ function renderProposals(filter = "all") {
 
           </div>
 
-          ${
-            proposal.consensus !== null
-              ? `
+          ${proposal.consensus !== null
+                    ? `
                 <div class="consensus-mini">
                   Consensus
                   <strong>
@@ -253,25 +252,24 @@ function renderProposals(filter = "all") {
                   </strong>
                 </div>
               `
-              : ""
-          }
+                    : ""
+                }
 
           <button
             class="proposal-open"
             onclick="openProposal('${proposal.id}')"
           >
-            ${
-              proposal.status === "completed"
-                ? "View Results"
-                : "Participate"
-            }
+            ${proposal.status === "completed"
+                    ? "View Results"
+                    : "Participate"
+                }
             →
           </button>
 
         </article>
       `;
-    })
-    .join("");
+        })
+        .join("");
 }
 
 
@@ -280,18 +278,18 @@ function renderProposals(filter = "all") {
 // ==========================================
 
 function openModal(html) {
-  document.getElementById("modalContent").innerHTML = html;
+    document.getElementById("modalContent").innerHTML = html;
 
-  document
-    .getElementById("modalBackdrop")
-    .classList.remove("hidden");
+    document
+        .getElementById("modalBackdrop")
+        .classList.remove("hidden");
 }
 
 
 function closeModal() {
-  document
-    .getElementById("modalBackdrop")
-    .classList.add("hidden");
+    document
+        .getElementById("modalBackdrop")
+        .classList.add("hidden");
 }
 
 
@@ -300,7 +298,7 @@ function closeModal() {
 // ==========================================
 
 function connectWallet() {
-  openModal(`
+    openModal(`
     <div class="modal-head">
 
       <h2>Connect Wallet</h2>
@@ -356,57 +354,57 @@ function connectWallet() {
 
 
 function demoConnect(provider) {
-  state.wallet = "0x7A3...91F2";
+    state.wallet = "0x7A3...91F2";
 
-  save();
+    save();
 
-  closeModal();
+    closeModal();
 
-  updateWallet();
+    updateWallet();
 
-  toast(`${provider}: Demo Wallet connected ✓`);
+    toast(`${provider}: Demo Wallet connected ✓`);
 
-  addActivity("Demo wallet connected");
+    addActivity("Demo wallet connected");
 }
 
 
 function disconnect() {
-  state.wallet = null;
+    state.wallet = null;
 
-  save();
+    save();
 
-  updateWallet();
+    updateWallet();
 
-  closeModal();
+    closeModal();
 
-  toast("Demo wallet disconnected");
+    toast("Demo wallet disconnected");
 }
 
 
 function updateWallet() {
-  const walletButton = document.getElementById("walletBtn");
+    const walletButton = document.getElementById("walletBtn");
 
-  if (!walletButton) return;
+    if (!walletButton) return;
 
-  walletButton.textContent =
-    state.wallet || "Connect Wallet";
+    walletButton.textContent =
+        state.wallet || "Connect Wallet";
 
-  walletButton.onclick = state.wallet
-    ? walletMenu
-    : connectWallet;
+    walletButton.onclick = state.wallet
+        ? walletMenu
+        : connectWallet;
 
-  const profileWallet =
-    document.getElementById("profileWallet");
+    const profileWallet =
+        document.getElementById("profileWallet");
 
-  if (profileWallet) {
-    profileWallet.textContent =
-      state.wallet || "Demo participant";
-  }
+    if (profileWallet) {
+        profileWallet.textContent =
+            state.wallet || "Demo participant";
+    }
 }
 
 
 function walletMenu() {
-  openModal(`
+    openModal(`
     <div class="modal-head">
 
       <h2>Demo Wallet</h2>
@@ -476,7 +474,7 @@ function walletMenu() {
 // ==========================================
 
 function createProposalModal() {
-  openModal(`
+    openModal(`
     <div class="modal-head">
 
       <h2>Create Proposal</h2>
@@ -618,13 +616,13 @@ function createProposalModal() {
 
 
 function addOption() {
-  const list = document.getElementById("optionList");
+    const list = document.getElementById("optionList");
 
-  const row = document.createElement("div");
+    const row = document.createElement("div");
 
-  row.className = "option-row";
+    row.className = "option-row";
 
-  row.innerHTML = `
+    row.innerHTML = `
     <input placeholder="New option">
 
     <button
@@ -635,105 +633,105 @@ function addOption() {
     </button>
   `;
 
-  list.appendChild(row);
+    list.appendChild(row);
 }
 
 
 function removeOption(button) {
-  const rows =
-    document.querySelectorAll(
-      "#optionList .option-row"
-    );
+    const rows =
+        document.querySelectorAll(
+            "#optionList .option-row"
+        );
 
-  if (rows.length > 2) {
-    button.parentElement.remove();
-  } else {
-    toast(
-      "A proposal needs at least two options.",
-      false
-    );
-  }
+    if (rows.length > 2) {
+        button.parentElement.remove();
+    } else {
+        toast(
+            "A proposal needs at least two options.",
+            false
+        );
+    }
 }
 
 
 function createProposal() {
-  const title =
-    document.getElementById("pTitle").value.trim();
+    const title =
+        document.getElementById("pTitle").value.trim();
 
-  const description =
-    document.getElementById("pDesc").value.trim();
+    const description =
+        document.getElementById("pDesc").value.trim();
 
-  const options =
-    [...document.querySelectorAll("#optionList input")]
-      .map((input) => input.value.trim())
-      .filter(Boolean);
+    const options =
+        [...document.querySelectorAll("#optionList input")]
+            .map((input) => input.value.trim())
+            .filter(Boolean);
 
-  if (
-    !title ||
-    !description ||
-    options.length < 2
-  ) {
-    toast(
-      "Please complete the proposal fields.",
-      false
-    );
+    if (
+        !title ||
+        !description ||
+        options.length < 2
+    ) {
+        toast(
+            "Please complete the proposal fields.",
+            false
+        );
 
-    return;
-  }
-
-  const id =
-    "P-" +
-    Math.random()
-      .toString(16)
-      .slice(2, 6)
-      .toUpperCase();
-
-  const proposal = {
-    id,
-
-    title,
-
-    description,
-
-    creator:
-      state.wallet ||
-      "0x7A3...91F2",
-
-    status: "active",
-
-    participants: 0,
-
-    deadline: "Aug 24, 2026",
-
-    mechanism:
-      document.getElementById("pMechanism").value,
-
-    consensus: null,
-
-    options
-  };
-
-  closeModal();
-
-  showTransaction(
-    "Create Proposal",
-    () => {
-
-      state.proposals.unshift(proposal);
-
-      state.stats.created++;
-
-      addActivity("Proposal created");
-
-      save();
-
-      renderProposals();
-
-      document
-        .getElementById("proposals")
-        .scrollIntoView();
+        return;
     }
-  );
+
+    const id =
+        "P-" +
+        Math.random()
+            .toString(16)
+            .slice(2, 6)
+            .toUpperCase();
+
+    const proposal = {
+        id,
+
+        title,
+
+        description,
+
+        creator:
+            state.wallet ||
+            "0x7A3...91F2",
+
+        status: "active",
+
+        participants: 0,
+
+        deadline: "Aug 24, 2026",
+
+        mechanism:
+            document.getElementById("pMechanism").value,
+
+        consensus: null,
+
+        options
+    };
+
+    closeModal();
+
+    showTransaction(
+        "Create Proposal",
+        () => {
+
+            state.proposals.unshift(proposal);
+
+            state.stats.created++;
+
+            addActivity("Proposal created");
+
+            save();
+
+            renderProposals();
+
+            document
+                .getElementById("proposals")
+                .scrollIntoView();
+        }
+    );
 }
 
 
@@ -742,7 +740,7 @@ function createProposal() {
 // ==========================================
 
 function showTransaction(action, onDone) {
-  openModal(`
+    openModal(`
     <div class="modal-head">
 
       <h2>
@@ -806,10 +804,10 @@ function showTransaction(action, onDone) {
     </div>
   `);
 
-  document.getElementById("confirmTx").onclick =
-    () => {
+    document.getElementById("confirmTx").onclick =
+        () => {
 
-      document.getElementById("modalContent").innerHTML = `
+            document.getElementById("modalContent").innerHTML = `
         <div class="modal-head">
           <h2>
             Transaction submitted
@@ -840,32 +838,32 @@ function showTransaction(action, onDone) {
         </div>
       `;
 
-      setTimeout(() => {
+            setTimeout(() => {
 
-        const blockStep =
-          document.getElementById("blockStep");
+                const blockStep =
+                    document.getElementById("blockStep");
 
-        blockStep.classList.add("done");
+                blockStep.classList.add("done");
 
-        blockStep.textContent =
-          "Block confirmed ✓";
+                blockStep.textContent =
+                    "Block confirmed ✓";
 
-        setTimeout(() => {
+                setTimeout(() => {
 
-          closeModal();
+                    closeModal();
 
-          if (onDone) {
-            onDone();
-          }
+                    if (onDone) {
+                        onDone();
+                    }
 
-          toast(
-            "Transaction confirmed ✓"
-          );
+                    toast(
+                        "Transaction confirmed ✓"
+                    );
 
-        }, 700);
+                }, 700);
 
-      }, 1000);
-    };
+            }, 1000);
+        };
 }
 
 
@@ -874,14 +872,14 @@ function showTransaction(action, onDone) {
 // ==========================================
 
 function openProposal(id) {
-  const proposal =
-    state.proposals.find(
-      (item) => item.id === id
-    );
+    const proposal =
+        state.proposals.find(
+            (item) => item.id === id
+        );
 
-  if (!proposal) return;
+    if (!proposal) return;
 
-  openModal(`
+    openModal(`
     <div class="modal-head">
 
       <h2>
@@ -947,20 +945,18 @@ function openProposal(id) {
       <div>
         Consensus
         <strong>
-          ${
-            proposal.consensus === null
-              ? "Pending"
-              : proposal.consensus + "%"
-          }
+          ${proposal.consensus === null
+            ? "Pending"
+            : proposal.consensus + "%"
+        }
         </strong>
       </div>
 
     </div>
 
-    ${
-      proposal.status === "completed"
+    ${proposal.status === "completed"
 
-        ? `
+            ? `
           <div
             class="consensus-mini"
             style="margin-top:20px"
@@ -972,7 +968,7 @@ function openProposal(id) {
           </div>
         `
 
-        : `
+            : `
 
           <h3 style="margin-top:25px">
             Choose your signal
@@ -981,8 +977,8 @@ function openProposal(id) {
           <div class="detail-options">
 
             ${proposal.options
-              .map(
-                (option, index) => `
+                .map(
+                    (option, index) => `
                   <button
                     class="vote-option"
                     onclick="
@@ -1004,29 +1000,30 @@ function openProposal(id) {
                         margin-top:5px
                       "
                     >
-                      ${
-                        proposal.mechanism ===
-                        "Commit-Reveal"
+                      ${proposal.mechanism ===
+                            "Commit-Reveal"
 
-                          ? "Commit privately"
+                            ? "Commit privately"
 
-                          : "Signal your preference"
-                      }
+                            : "Signal your preference"
+                        }
                     </small>
 
                   </button>
                 `
-              )
-              .join("")}
+                )
+                .join("")}
 
           </div>
 
           <p class="prototype-note">
-            Demo only. Your action is stored locally
-            in this browser.
-          </p>
+  ${proposal.pollId !== undefined
+                ? "✓ Votes are recorded on the Sepolia blockchain."
+                : "Demo only. Your action is stored locally in this browser."
+            }
+</p>
         `
-    }
+        }
   `);
 }
 
@@ -1036,47 +1033,47 @@ function openProposal(id) {
 // ==========================================
 
 async function selectVote(id, index) {
-  const proposal =
-    state.proposals.find(
-      (item) => item.id === id
-    );
-
-  if (!proposal) return;
-
-  const vote =
-    proposal.options[index];
-
-  if (
-    proposal.mechanism ===
-    "Commit-Reveal"
-  ) {
-    await commitVote(id, vote);
-  } else {
-
-    showTransaction(
-      "Submit Signal",
-      () => {
-
-        proposal.participants++;
-
-        state.stats.submitted++;
-
-        addActivity(
-          `Signal submitted: ${vote}`
+    const proposal =
+        state.proposals.find(
+            (item) => item.id === id
         );
 
-        save();
+    if (!proposal) return;
 
-        closeModal();
+    const vote =
+        proposal.options[index];
 
-        renderProposals();
+    if (
+        proposal.mechanism ===
+        "Commit-Reveal"
+    ) {
+        await commitVote(id, vote);
+    } else {
 
-        toast(
-          "Signal submitted ✓"
+        showTransaction(
+            "Submit Signal",
+            () => {
+
+                proposal.participants++;
+
+                state.stats.submitted++;
+
+                addActivity(
+                    `Signal submitted: ${vote}`
+                );
+
+                save();
+
+                closeModal();
+
+                renderProposals();
+
+                toast(
+                    "Signal submitted ✓"
+                );
+            }
         );
-      }
-    );
-  }
+    }
 }
 
 
@@ -1086,58 +1083,58 @@ async function selectVote(id, index) {
 
 async function commitVote(id, vote) {
 
-  const randomBytes =
-    crypto.getRandomValues(
-      new Uint8Array(16)
+    const randomBytes =
+        crypto.getRandomValues(
+            new Uint8Array(16)
+        );
+
+    const secret =
+        [...randomBytes]
+            .map(
+                (byte) =>
+                    byte
+                        .toString(16)
+                        .padStart(2, "0")
+            )
+            .join("");
+
+    const hash =
+        await sha256(
+            `${vote}:${secret}`
+        );
+
+    state.commitments[id] = {
+        vote,
+        secret,
+        hash,
+        revealed: false
+    };
+
+    save();
+
+    showTransaction(
+        "Commit Vote",
+        () => {
+
+            addActivity(
+                "Vote committed"
+            );
+
+            save();
+
+            openReveal(id);
+        }
     );
-
-  const secret =
-    [...randomBytes]
-      .map(
-        (byte) =>
-          byte
-            .toString(16)
-            .padStart(2, "0")
-      )
-      .join("");
-
-  const hash =
-    await sha256(
-      `${vote}:${secret}`
-    );
-
-  state.commitments[id] = {
-    vote,
-    secret,
-    hash,
-    revealed: false
-  };
-
-  save();
-
-  showTransaction(
-    "Commit Vote",
-    () => {
-
-      addActivity(
-        "Vote committed"
-      );
-
-      save();
-
-      openReveal(id);
-    }
-  );
 }
 
 
 function openReveal(id) {
-  const commitment =
-    state.commitments[id];
+    const commitment =
+        state.commitments[id];
 
-  if (!commitment) return;
+    if (!commitment) return;
 
-  openModal(`
+    openModal(`
     <div class="modal-head">
 
       <h2>
@@ -1185,35 +1182,34 @@ function openReveal(id) {
 
 async function revealVote(id) {
 
-  const commitment =
-    state.commitments[id];
+    const commitment =
+        state.commitments[id];
 
-  if (!commitment) return;
+    if (!commitment) return;
 
-  const recalculated =
-    await sha256(
-      `${commitment.vote}:${commitment.secret}`
-    );
+    const recalculated =
+        await sha256(
+            `${commitment.vote}:${commitment.secret}`
+        );
 
-  const match =
-    recalculated === commitment.hash;
+    const match =
+        recalculated === commitment.hash;
 
-  commitment.revealed = match;
+    commitment.revealed = match;
 
-  if (match) {
-    state.stats.revealed++;
-  }
+    if (match) {
+        state.stats.revealed++;
+    }
 
-  addActivity("Vote revealed");
+    addActivity("Vote revealed");
 
-  save();
+    save();
 
-  openModal(`
+    openModal(`
     <div class="modal-head">
 
       <h2>
-        ${
-          match
+        ${match
             ? "Vote verified ✓"
             : "Verification failed"
         }
@@ -1239,18 +1235,16 @@ async function revealVote(id) {
     <p
       style="
         color:
-        ${
-          match
+        ${match
             ? "var(--green)"
             : "var(--red)"
         }
       "
     >
-      ${
-        match
-          ? "The revealed vote and secret match your original commitment."
-          : "The reveal does not match the stored commitment."
-      }
+      ${match
+            ? "The revealed vote and secret match your original commitment."
+            : "The reveal does not match the stored commitment."
+        }
     </p>
 
     <div class="code-pill">
@@ -1265,25 +1259,25 @@ async function revealVote(id) {
 
 async function sha256(text) {
 
-  const data =
-    new TextEncoder().encode(text);
+    const data =
+        new TextEncoder().encode(text);
 
-  const hash =
-    await crypto.subtle.digest(
-      "SHA-256",
-      data
-    );
+    const hash =
+        await crypto.subtle.digest(
+            "SHA-256",
+            data
+        );
 
-  return [
-    ...new Uint8Array(hash)
-  ]
-    .map(
-      (byte) =>
-        byte
-          .toString(16)
-          .padStart(2, "0")
-    )
-    .join("");
+    return [
+        ...new Uint8Array(hash)
+    ]
+        .map(
+            (byte) =>
+                byte
+                    .toString(16)
+                    .padStart(2, "0")
+        )
+        .join("");
 }
 
 
@@ -1293,31 +1287,31 @@ async function sha256(text) {
 
 function addActivity(text) {
 
-  state.activity.unshift({
-    text,
-    time: "just now"
-  });
+    state.activity.unshift({
+        text,
+        time: "just now"
+    });
 
-  state.activity =
-    state.activity.slice(0, 6);
+    state.activity =
+        state.activity.slice(0, 6);
 
-  renderActivity();
+    renderActivity();
 }
 
 
 function renderActivity() {
 
-  const feed =
-    document.getElementById(
-      "activityFeed"
-    );
+    const feed =
+        document.getElementById(
+            "activityFeed"
+        );
 
-  if (feed) {
+    if (feed) {
 
-    feed.innerHTML =
-      state.activity
-        .map(
-          (activity) => `
+        feed.innerHTML =
+            state.activity
+                .map(
+                    (activity) => `
             <div class="feed-item">
 
               <span class="feed-icon">
@@ -1338,60 +1332,60 @@ function renderActivity() {
 
             </div>
           `
-        )
-        .join("");
-  }
+                )
+                .join("");
+    }
 
-  const created =
-    document.getElementById(
-      "createdCount"
-    );
+    const created =
+        document.getElementById(
+            "createdCount"
+        );
 
-  const submitted =
-    document.getElementById(
-      "submittedCount"
-    );
+    const submitted =
+        document.getElementById(
+            "submittedCount"
+        );
 
-  const revealed =
-    document.getElementById(
-      "revealedCount"
-    );
+    const revealed =
+        document.getElementById(
+            "revealedCount"
+        );
 
-  const rate =
-    document.getElementById(
-      "rateCount"
-    );
+    const rate =
+        document.getElementById(
+            "rateCount"
+        );
 
-  if (created) {
-    created.textContent =
-      state.stats.created;
-  }
+    if (created) {
+        created.textContent =
+            state.stats.created;
+    }
 
-  if (submitted) {
-    submitted.textContent =
-      state.stats.submitted;
-  }
+    if (submitted) {
+        submitted.textContent =
+            state.stats.submitted;
+    }
 
-  if (revealed) {
-    revealed.textContent =
-      state.stats.revealed;
-  }
+    if (revealed) {
+        revealed.textContent =
+            state.stats.revealed;
+    }
 
-  if (rate) {
+    if (rate) {
 
-    const percentage =
-      Math.round(
-        (state.stats.revealed /
-          Math.max(
-            1,
-            state.stats.submitted
-          )) *
-          100
-      );
+        const percentage =
+            Math.round(
+                (state.stats.revealed /
+                    Math.max(
+                        1,
+                        state.stats.submitted
+                    )) *
+                100
+            );
 
-    rate.textContent =
-      percentage + "%";
-  }
+        rate.textContent =
+            percentage + "%";
+    }
 }
 
 
@@ -1401,44 +1395,44 @@ function renderActivity() {
 
 function updateQuadratic() {
 
-  const slider =
+    const slider =
+        document.getElementById(
+            "signalSlider"
+        );
+
+    if (!slider) return;
+
+    const value =
+        Number(slider.value);
+
+    const cost =
+        value * value;
+
     document.getElementById(
-      "signalSlider"
-    );
+        "signalOutput"
+    ).textContent = value;
 
-  if (!slider) return;
+    document.getElementById(
+        "signalCost"
+    ).textContent = cost;
 
-  const value =
-    Number(slider.value);
+    document.getElementById(
+        "barSignal"
+    ).textContent = value;
 
-  const cost =
-    value * value;
+    document.getElementById(
+        "barCost"
+    ).textContent = cost;
 
-  document.getElementById(
-    "signalOutput"
-  ).textContent = value;
+    document.getElementById(
+        "signalBar"
+    ).style.width =
+        value * 10 + "%";
 
-  document.getElementById(
-    "signalCost"
-  ).textContent = cost;
-
-  document.getElementById(
-    "barSignal"
-  ).textContent = value;
-
-  document.getElementById(
-    "barCost"
-  ).textContent = cost;
-
-  document.getElementById(
-    "signalBar"
-  ).style.width =
-    value * 10 + "%";
-
-  document.getElementById(
-    "costBar"
-  ).style.width =
-    cost + "%";
+    document.getElementById(
+        "costBar"
+    ).style.width =
+        cost + "%";
 }
 
 
@@ -1448,88 +1442,88 @@ function updateQuadratic() {
 
 function updateSimulator() {
 
-  const normalSlider =
+    const normalSlider =
+        document.getElementById(
+            "normalSlider"
+        );
+
+    const walletSlider =
+        document.getElementById(
+            "walletSlider"
+        );
+
+    const whaleSlider =
+        document.getElementById(
+            "whaleSlider"
+        );
+
+    if (
+        !normalSlider ||
+        !walletSlider ||
+        !whaleSlider
+    ) {
+        return;
+    }
+
+    const normal =
+        Number(normalSlider.value);
+
+    const wallets =
+        Number(walletSlider.value);
+
+    const strength =
+        Number(whaleSlider.value);
+
     document.getElementById(
-      "normalSlider"
-    );
+        "normalOut"
+    ).textContent = normal;
 
-  const walletSlider =
     document.getElementById(
-      "walletSlider"
-    );
+        "walletOut"
+    ).textContent = wallets;
 
-  const whaleSlider =
     document.getElementById(
-      "whaleSlider"
-    );
+        "whaleOut"
+    ).textContent = strength;
 
-  if (
-    !normalSlider ||
-    !walletSlider ||
-    !whaleSlider
-  ) {
-    return;
-  }
+    const traditional =
+        Math.min(
+            99,
+            (wallets * strength) /
+            (normal + wallets) *
+            100
+        );
 
-  const normal =
-    Number(normalSlider.value);
+    const model =
+        Math.min(
+            99,
+            traditional *
+            (
+                0.35 +
+                0.65 *
+                (1 - strength / 120)
+            )
+        );
 
-  const wallets =
-    Number(walletSlider.value);
+    document.getElementById(
+        "traditionalInfluence"
+    ).textContent =
+        traditional.toFixed(1) + "%";
 
-  const strength =
-    Number(whaleSlider.value);
+    document.getElementById(
+        "modelInfluence"
+    ).textContent =
+        model.toFixed(1) + "%";
 
-  document.getElementById(
-    "normalOut"
-  ).textContent = normal;
+    document.getElementById(
+        "traditionalBar"
+    ).style.width =
+        traditional + "%";
 
-  document.getElementById(
-    "walletOut"
-  ).textContent = wallets;
-
-  document.getElementById(
-    "whaleOut"
-  ).textContent = strength;
-
-  const traditional =
-    Math.min(
-      99,
-      (wallets * strength) /
-        (normal + wallets) *
-        100
-    );
-
-  const model =
-    Math.min(
-      99,
-      traditional *
-        (
-          0.35 +
-          0.65 *
-            (1 - strength / 120)
-        )
-    );
-
-  document.getElementById(
-    "traditionalInfluence"
-  ).textContent =
-    traditional.toFixed(1) + "%";
-
-  document.getElementById(
-    "modelInfluence"
-  ).textContent =
-    model.toFixed(1) + "%";
-
-  document.getElementById(
-    "traditionalBar"
-  ).style.width =
-    traditional + "%";
-
-  document.getElementById(
-    "modelBar"
-  ).style.width =
-    model + "%";
+    document.getElementById(
+        "modelBar"
+    ).style.width =
+        model + "%";
 }
 
 
@@ -1539,53 +1533,53 @@ function updateSimulator() {
 
 function animateCounters() {
 
-  document
-    .querySelectorAll(
-      "[data-counter]"
-    )
-    .forEach((element) => {
+    document
+        .querySelectorAll(
+            "[data-counter]"
+        )
+        .forEach((element) => {
 
-      const target =
-        Number(
-          element.dataset.counter
-        );
+            const target =
+                Number(
+                    element.dataset.counter
+                );
 
-      const suffix =
-        element.dataset.suffix || "";
+            const suffix =
+                element.dataset.suffix || "";
 
-      let current = 0;
+            let current = 0;
 
-      const step =
-        Math.max(
-          1,
-          target / 35
-        );
+            const step =
+                Math.max(
+                    1,
+                    target / 35
+                );
 
-      function tick() {
+            function tick() {
 
-        current =
-          Math.min(
-            target,
-            current + step
-          );
+                current =
+                    Math.min(
+                        target,
+                        current + step
+                    );
 
-        element.textContent =
-          Math.round(
-            current
-          ).toLocaleString() +
-          suffix;
+                element.textContent =
+                    Math.round(
+                        current
+                    ).toLocaleString() +
+                    suffix;
 
-        if (
-          current < target
-        ) {
-          requestAnimationFrame(
-            tick
-          );
-        }
-      }
+                if (
+                    current < target
+                ) {
+                    requestAnimationFrame(
+                        tick
+                    );
+                }
+            }
 
-      tick();
-    });
+            tick();
+        });
 }
 
 
@@ -1595,21 +1589,21 @@ function animateCounters() {
 
 function resetDemo() {
 
-  localStorage.removeItem(
-    STORAGE
-  );
+    localStorage.removeItem(
+        STORAGE
+    );
 
-  state = loadState();
+    state = loadState();
 
-  renderProposals();
+    renderProposals();
 
-  renderActivity();
+    renderActivity();
 
-  updateWallet();
+    updateWallet();
 
-  toast(
-    "Demo reset to sample data"
-  );
+    toast(
+        "Demo reset to sample data"
+    );
 }
 
 
@@ -1618,121 +1612,121 @@ function resetDemo() {
 // ==========================================
 
 document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+    "DOMContentLoaded",
+    () => {
 
-    renderProposals();
+        renderProposals();
 
-    renderActivity();
+        renderActivity();
 
-    updateWallet();
+        updateWallet();
 
-    updateQuadratic();
+        updateQuadratic();
 
-    updateSimulator();
+        updateSimulator();
 
-    animateCounters();
-
-
-    // Proposal filters
-    document
-      .querySelectorAll(".filter")
-      .forEach((button) => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            document
-              .querySelectorAll(
-                ".filter"
-              )
-              .forEach((item) =>
-                item.classList.remove(
-                  "active"
-                )
-              );
-
-            button.classList.add(
-              "active"
-            );
-
-            renderProposals(
-              button.dataset.filter
-            );
-          }
-        );
-      });
+        animateCounters();
 
 
-    // Create proposal buttons
-    const createButton =
-      document.getElementById(
-        "createBtn"
-      );
+        // Proposal filters
+        document
+            .querySelectorAll(".filter")
+            .forEach((button) => {
 
-    const createHeroButton =
-      document.getElementById(
-        "createHeroBtn"
-      );
+                button.addEventListener(
+                    "click",
+                    () => {
 
-    if (createButton) {
-      createButton.onclick =
-        createProposalModal;
-    }
+                        document
+                            .querySelectorAll(
+                                ".filter"
+                            )
+                            .forEach((item) =>
+                                item.classList.remove(
+                                    "active"
+                                )
+                            );
 
-    if (createHeroButton) {
-      createHeroButton.onclick =
-        createProposalModal;
-    }
+                        button.classList.add(
+                            "active"
+                        );
+
+                        renderProposals(
+                            button.dataset.filter
+                        );
+                    }
+                );
+            });
 
 
-    // Commit demo
-    const commitDemoButton =
-      document.getElementById(
-        "commitDemoBtn"
-      );
-
-    if (commitDemoButton) {
-
-      commitDemoButton.onclick =
-        async () => {
-
-          const vote =
+        // Create proposal buttons
+        const createButton =
             document.getElementById(
-              "demoVote"
-            ).value;
-
-          const randomBytes =
-            crypto.getRandomValues(
-              new Uint8Array(12)
+                "createBtn"
             );
 
-          const secret =
-            [...randomBytes]
-              .map(
-                (byte) =>
-                  byte
-                    .toString(16)
-                    .padStart(2, "0")
-              )
-              .join("");
-
-          const hash =
-            await sha256(
-              `${vote}:${secret}`
-            );
-
-          const result =
+        const createHeroButton =
             document.getElementById(
-              "commitResult"
+                "createHeroBtn"
             );
 
-          result.classList.remove(
-            "hidden"
-          );
+        if (createButton) {
+            createButton.onclick =
+                createProposalModal;
+        }
 
-          result.innerHTML = `
+        if (createHeroButton) {
+            createHeroButton.onclick =
+                createProposalModal;
+        }
+
+
+        // Commit demo
+        const commitDemoButton =
+            document.getElementById(
+                "commitDemoBtn"
+            );
+
+        if (commitDemoButton) {
+
+            commitDemoButton.onclick =
+                async () => {
+
+                    const vote =
+                        document.getElementById(
+                            "demoVote"
+                        ).value;
+
+                    const randomBytes =
+                        crypto.getRandomValues(
+                            new Uint8Array(12)
+                        );
+
+                    const secret =
+                        [...randomBytes]
+                            .map(
+                                (byte) =>
+                                    byte
+                                        .toString(16)
+                                        .padStart(2, "0")
+                            )
+                            .join("");
+
+                    const hash =
+                        await sha256(
+                            `${vote}:${secret}`
+                        );
+
+                    const result =
+                        document.getElementById(
+                            "commitResult"
+                        );
+
+                    result.classList.remove(
+                        "hidden"
+                    );
+
+                    result.innerHTML = `
             <strong>
               Vote committed ✓
             </strong>
@@ -1756,146 +1750,606 @@ document.addEventListener(
               ${secret}
             </span>
           `;
-        };
-    }
-
-
-    // Quadratic slider
-    const signalSlider =
-      document.getElementById(
-        "signalSlider"
-      );
-
-    if (signalSlider) {
-      signalSlider.addEventListener(
-        "input",
-        updateQuadratic
-      );
-    }
-
-
-    // Simulator sliders
-    const normalSlider =
-      document.getElementById(
-        "normalSlider"
-      );
-
-    const walletSlider =
-      document.getElementById(
-        "walletSlider"
-      );
-
-    const whaleSlider =
-      document.getElementById(
-        "whaleSlider"
-      );
-
-    if (normalSlider) {
-      normalSlider.addEventListener(
-        "input",
-        updateSimulator
-      );
-    }
-
-    if (walletSlider) {
-      walletSlider.addEventListener(
-        "input",
-        updateSimulator
-      );
-    }
-
-    if (whaleSlider) {
-      whaleSlider.addEventListener(
-        "input",
-        updateSimulator
-      );
-    }
-
-
-    // Reset demo
-    const resetButton =
-      document.getElementById(
-        "resetBtn"
-      );
-
-    if (resetButton) {
-
-      resetButton.onclick = () => {
-
-        if (
-          confirm(
-            "Reset the demo and remove local activity?"
-          )
-        ) {
-          resetDemo();
+                };
         }
-      };
-    }
 
 
-    // Mobile navigation
-    const mobileMenu =
-      document.getElementById(
-        "mobileMenu"
-      );
-
-    if (mobileMenu) {
-
-      mobileMenu.onclick = () => {
-
-        document
-          .getElementById(
-            "mainNav"
-          )
-          .classList.toggle(
-            "open"
-          );
-      };
-    }
-
-
-    // Scroll buttons
-    document
-      .querySelectorAll(
-        "[data-scroll]"
-      )
-      .forEach((button) => {
-
-        button.onclick = () => {
-
-          const target =
-            document.querySelector(
-              button.dataset.scroll
+        // Quadratic slider
+        const signalSlider =
+            document.getElementById(
+                "signalSlider"
             );
 
-          if (target) {
-            target.scrollIntoView();
-          }
-        };
-      });
-
-
-    // Close modal when clicking backdrop
-    const backdrop =
-      document.getElementById(
-        "modalBackdrop"
-      );
-
-    if (backdrop) {
-
-      backdrop.addEventListener(
-        "click",
-        (event) => {
-
-          if (
-            event.target.id ===
-            "modalBackdrop"
-          ) {
-            closeModal();
-          }
+        if (signalSlider) {
+            signalSlider.addEventListener(
+                "input",
+                updateQuadratic
+            );
         }
-      );
+
+
+        // Simulator sliders
+        const normalSlider =
+            document.getElementById(
+                "normalSlider"
+            );
+
+        const walletSlider =
+            document.getElementById(
+                "walletSlider"
+            );
+
+        const whaleSlider =
+            document.getElementById(
+                "whaleSlider"
+            );
+
+        if (normalSlider) {
+            normalSlider.addEventListener(
+                "input",
+                updateSimulator
+            );
+        }
+
+        if (walletSlider) {
+            walletSlider.addEventListener(
+                "input",
+                updateSimulator
+            );
+        }
+
+        if (whaleSlider) {
+            whaleSlider.addEventListener(
+                "input",
+                updateSimulator
+            );
+        }
+
+
+        // Reset demo
+        const resetButton =
+            document.getElementById(
+                "resetBtn"
+            );
+
+        if (resetButton) {
+
+            resetButton.onclick = () => {
+
+                if (
+                    confirm(
+                        "Reset the demo and remove local activity?"
+                    )
+                ) {
+                    resetDemo();
+                }
+            };
+        }
+
+
+        // Mobile navigation
+        const mobileMenu =
+            document.getElementById(
+                "mobileMenu"
+            );
+
+        if (mobileMenu) {
+
+            mobileMenu.onclick = () => {
+
+                document
+                    .getElementById(
+                        "mainNav"
+                    )
+                    .classList.toggle(
+                        "open"
+                    );
+            };
+        }
+
+
+        // Scroll buttons
+        document
+            .querySelectorAll(
+                "[data-scroll]"
+            )
+            .forEach((button) => {
+
+                button.onclick = () => {
+
+                    const target =
+                        document.querySelector(
+                            button.dataset.scroll
+                        );
+
+                    if (target) {
+                        target.scrollIntoView();
+                    }
+                };
+            });
+
+
+        // Close modal when clicking backdrop
+        const backdrop =
+            document.getElementById(
+                "modalBackdrop"
+            );
+
+        if (backdrop) {
+
+            backdrop.addEventListener(
+                "click",
+                (event) => {
+
+                    if (
+                        event.target.id ===
+                        "modalBackdrop"
+                    ) {
+                        closeModal();
+                    }
+                }
+            );
+        }
+
+    }
+);
+
+
+// ==========================================
+// REAL BLOCKCHAIN CONNECTION
+// ==========================================
+
+const CONTRACT_ADDRESS =
+    "0x3ff2dE84542C4cDb759a62c4eF4F2324E6B635EF";
+
+const CONTRACT_ABI = [
+    "function createPoll(string question, string[] options) returns (uint256)",
+    "function vote(uint256 pollId, uint256 optionIndex)",
+    "function getPoll(uint256 pollId) view returns (string question, string[] options, uint256[] voteCounts)",
+    "function hasVoted(uint256 pollId, address voter) view returns (bool)",
+    "function pollCount() view returns (uint256)"
+];
+
+let blockchainProvider = null;
+let blockchainSigner = null;
+let votingContract = null;
+
+
+// ==========================================
+// REAL METAMASK CONNECTION
+// ==========================================
+
+async function connectWallet() {
+
+    if (!window.ethereum) {
+        toast(
+            "MetaMask is not installed.",
+            false
+        );
+        return;
     }
 
-  }
-);
+    try {
+
+        blockchainProvider =
+            new ethers.BrowserProvider(
+                window.ethereum
+            );
+
+        await blockchainProvider.send(
+            "eth_requestAccounts",
+            []
+        );
+
+        blockchainSigner =
+            await blockchainProvider.getSigner();
+
+        const address =
+            await blockchainSigner.getAddress();
+
+        votingContract =
+            new ethers.Contract(
+                CONTRACT_ADDRESS,
+                CONTRACT_ABI,
+                blockchainSigner
+            );
+
+        state.wallet = address;
+
+        save();
+
+        updateWallet();
+
+        toast(
+            "MetaMask connected ✓"
+        );
+
+        addActivity(
+            "Wallet connected"
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        toast(
+            "Wallet connection failed.",
+            false
+        );
+    }
+}
+
+
+// ==========================================
+// REAL DISCONNECT
+// ==========================================
+
+function disconnect() {
+
+    blockchainProvider = null;
+    blockchainSigner = null;
+    votingContract = null;
+
+    state.wallet = null;
+
+    save();
+
+    updateWallet();
+
+    closeModal();
+
+    toast(
+        "Wallet disconnected"
+    );
+}
+
+
+// ==========================================
+// REAL CREATE POLL
+// ==========================================
+
+async function createProposal() {
+
+    if (!votingContract) {
+
+        toast(
+            "Connect MetaMask first.",
+            false
+        );
+
+        return;
+    }
+
+    const title =
+        document
+            .getElementById("pTitle")
+            .value
+            .trim();
+
+    const description =
+        document
+            .getElementById("pDesc")
+            .value
+            .trim();
+
+    const options =
+        [
+            ...document.querySelectorAll(
+                "#optionList input"
+            )
+        ]
+            .map(
+                input => input.value.trim()
+            )
+            .filter(Boolean);
+
+    if (
+        !title ||
+        !description ||
+        options.length < 2
+    ) {
+
+        toast(
+            "Please complete the proposal fields.",
+            false
+        );
+
+        return;
+    }
+
+    try {
+
+        closeModal();
+
+        toast(
+            "Confirm the transaction in MetaMask..."
+        );
+
+        const tx =
+            await votingContract.createPoll(
+                title,
+                options
+            );
+
+        toast(
+            "Transaction submitted. Waiting for confirmation..."
+        );
+
+        const receipt =
+            await tx.wait();
+
+        console.log(
+            "Poll creation receipt:",
+            receipt
+        );
+
+        const pollId =
+            Number(
+                await votingContract.pollCount()
+            ) - 1;
+
+        const proposal = {
+
+            id:
+                "CHAIN-" +
+                pollId,
+
+            pollId,
+
+            title,
+
+            description,
+
+            creator:
+                state.wallet,
+
+            status:
+                "active",
+
+            participants:
+                0,
+
+            deadline:
+                "On-chain",
+
+            mechanism:
+                document
+                    .getElementById(
+                        "pMechanism"
+                    )
+                    .value,
+
+            consensus:
+                null,
+
+            options
+        };
+
+        state.proposals.unshift(
+            proposal
+        );
+
+        state.stats.created++;
+
+        addActivity(
+            "On-chain proposal created"
+        );
+
+        save();
+
+        renderProposals();
+
+        document
+            .getElementById("proposals")
+            .scrollIntoView();
+
+        toast(
+            "Proposal created on-chain ✓"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Create poll error:",
+            error
+        );
+
+        toast(
+            "Proposal creation failed. Check MetaMask.",
+            false
+        );
+    }
+}
+
+
+// ==========================================
+// REAL VOTING
+// ==========================================
+
+async function selectVote(
+    id,
+    index
+) {
+
+    if (!votingContract) {
+
+        toast(
+            "Connect MetaMask first.",
+            false
+        );
+
+        return;
+    }
+
+    const proposal =
+        state.proposals.find(
+            item =>
+                item.id === id
+        );
+
+    if (!proposal) return;
+
+    // Only blockchain-created proposals
+    // use the real voting contract.
+    if (
+        proposal.pollId === undefined
+    ) {
+
+        toast(
+            "This is a demo proposal. Create a new proposal to vote on-chain.",
+            false
+        );
+
+        return;
+    }
+
+    try {
+
+        const alreadyVoted =
+            await votingContract.hasVoted(
+                proposal.pollId,
+                state.wallet
+            );
+
+        if (alreadyVoted) {
+
+            toast(
+                "You have already voted on this poll.",
+                false
+            );
+
+            return;
+        }
+
+        const tx =
+            await votingContract.vote(
+                proposal.pollId,
+                index
+            );
+
+        toast(
+            "Vote submitted. Confirming..."
+        );
+
+        await tx.wait();
+
+        proposal.participants++;
+
+        state.stats.submitted++;
+
+        addActivity(
+            `On-chain vote submitted: ${proposal.options[index]}`
+        );
+
+        save();
+
+        closeModal();
+
+        await loadOnChainResults(
+            proposal
+        );
+
+        renderProposals();
+
+        toast(
+            "Vote recorded on-chain ✓"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Voting error:",
+            error
+        );
+
+        if (
+            error.reason ===
+            "Already voted"
+        ) {
+
+            toast(
+                "You have already voted on this poll.",
+                false
+            );
+
+        } else {
+
+            toast(
+                "Vote failed. Check MetaMask.",
+                false
+            );
+        }
+    }
+}
+
+
+// ==========================================
+// READ BLOCKCHAIN RESULTS
+// ==========================================
+
+async function loadOnChainResults(
+    proposal
+) {
+
+    if (
+        !votingContract ||
+        proposal.pollId === undefined
+    ) {
+        return null;
+    }
+
+    try {
+
+        const result =
+            await votingContract.getPoll(
+                proposal.pollId
+            );
+
+        const question =
+            result[0];
+
+        const options =
+            result[1];
+
+        const voteCounts =
+            result[2].map(
+                count =>
+                    Number(count)
+            );
+
+        proposal.title =
+            question;
+
+        proposal.options =
+            options;
+
+        proposal.voteCounts =
+            voteCounts;
+
+        const totalVotes =
+            voteCounts.reduce(
+                (sum, count) =>
+                    sum + count,
+                0
+            );
+
+        proposal.participants =
+            totalVotes;
+
+        return {
+            question,
+            options,
+            voteCounts,
+            totalVotes
+        };
+
+    } catch (error) {
+
+        console.error(
+            "Could not read results:",
+            error
+        );
+
+        return null;
+    }
+}

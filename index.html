@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DecentraSignal — a frontend prototype for permissionless voting and decentralized coordination.">
+  <meta name="description"
+    content="DecentraSignal — a frontend prototype for permissionless voting and decentralized coordination.">
   <title>DecentraSignal — Decentralized Coordination Layer</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="bg-orb orb-one"></div>
   <div class="bg-orb orb-two"></div>
@@ -31,7 +34,8 @@
       <div class="hero-copy">
         <div class="eyebrow"><span class="pulse"></span> DECENTRALIZED COORDINATION LAYER</div>
         <h1>Coordinate without <span>centralized control.</span></h1>
-        <p>Permissionless voting and signaling for communities that want transparent, censorship-resistant consensus.</p>
+        <p>Permissionless voting and signaling for communities that want transparent, censorship-resistant consensus.
+        </p>
         <div class="hero-actions">
           <button class="btn btn-primary" data-scroll="#proposals">Explore Proposals <span>→</span></button>
           <button class="btn btn-secondary" id="createHeroBtn">Create Proposal</button>
@@ -48,12 +52,16 @@
           <div class="node n5">D</div>
           <div class="core"><strong>76%</strong><small>CONSENSUS</small></div>
           <svg viewBox="0 0 420 260" aria-hidden="true">
-            <line x1="210" y1="130" x2="75" y2="55"/><line x1="210" y1="130" x2="345" y2="55"/>
-            <line x1="210" y1="130" x2="65" y2="205"/><line x1="210" y1="130" x2="355" y2="205"/>
-            <line x1="75" y1="55" x2="345" y2="55"/><line x1="65" y1="205" x2="355" y2="205"/>
+            <line x1="210" y1="130" x2="75" y2="55" />
+            <line x1="210" y1="130" x2="345" y2="55" />
+            <line x1="210" y1="130" x2="65" y2="205" />
+            <line x1="210" y1="130" x2="355" y2="205" />
+            <line x1="75" y1="55" x2="345" y2="55" />
+            <line x1="65" y1="205" x2="355" y2="205" />
           </svg>
         </div>
-        <div class="network-footer"><span>Commit</span><span>Reveal</span><span>Verify</span><span>Consensus</span></div>
+        <div class="network-footer"><span>Commit</span><span>Reveal</span><span>Verify</span><span>Consensus</span>
+        </div>
       </div>
     </section>
 
@@ -63,31 +71,50 @@
           <div class="eyebrow">WHY THIS MATTERS</div>
           <h2>Online consensus is controlled by platforms.</h2>
         </div>
-        <p>Social metrics measure visibility and popularity. They don't necessarily measure independent collective intent.</p>
+        <p>Social metrics measure visibility and popularity. They don't necessarily measure independent collective
+          intent.</p>
       </div>
       <div class="problem-grid">
-        <article class="problem-card glass"><span class="card-icon">◎</span><h3>Centralized Polls</h3><p>Platforms control the voting infrastructure, data and presentation of results.</p></article>
-        <article class="problem-card glass"><span class="card-icon">↗</span><h3>Popularity ≠ Consensus</h3><p>Likes, reactions and follower counts can be manipulated or distorted by platform dynamics.</p></article>
-        <article class="problem-card glass"><span class="card-icon">◌</span><h3>Early Votes Create Herding</h3><p>When results are visible early, participants may anchor on the crowd instead of their own preference.</p></article>
+        <article class="problem-card glass"><span class="card-icon">◎</span>
+          <h3>Centralized Polls</h3>
+          <p>Platforms control the voting infrastructure, data and presentation of results.</p>
+        </article>
+        <article class="problem-card glass"><span class="card-icon">↗</span>
+          <h3>Popularity ≠ Consensus</h3>
+          <p>Likes, reactions and follower counts can be manipulated or distorted by platform dynamics.</p>
+        </article>
+        <article class="problem-card glass"><span class="card-icon">◌</span>
+          <h3>Early Votes Create Herding</h3>
+          <p>When results are visible early, participants may anchor on the crowd instead of their own preference.</p>
+        </article>
       </div>
       <div class="solution-banner">
-        <div><span class="eyebrow">THE SOLUTION</span><h3>A neutral coordination layer.</h3></div>
+        <div><span class="eyebrow">THE SOLUTION</span>
+          <h3>A neutral coordination layer.</h3>
+        </div>
         <p>Commit privately. Reveal later. Measure the signal transparently.</p>
       </div>
     </section>
 
     <section class="section stats-section">
       <div class="stats-grid">
-        <div class="stat-card glass"><span>Total Proposals</span><strong data-counter="24">0</strong><small>Across the demo network</small></div>
-        <div class="stat-card glass"><span>Active Proposals</span><strong data-counter="8">0</strong><small>Open for participation</small></div>
-        <div class="stat-card glass"><span>Total Participants</span><strong data-counter="1284">0</strong><small>Unique demo identities</small></div>
-        <div class="stat-card glass"><span>Average Consensus</span><strong data-counter="76" data-suffix="%">0%</strong><small>Across completed signals</small></div>
+        <div class="stat-card glass"><span>Total Proposals</span><strong data-counter="24">0</strong><small>Across the
+            demo network</small></div>
+        <div class="stat-card glass"><span>Active Proposals</span><strong data-counter="8">0</strong><small>Open for
+            participation</small></div>
+        <div class="stat-card glass"><span>Total Participants</span><strong data-counter="1284">0</strong><small>Unique
+            demo identities</small></div>
+        <div class="stat-card glass"><span>Average Consensus</span><strong data-counter="76"
+            data-suffix="%">0%</strong><small>Across completed signals</small></div>
       </div>
     </section>
 
     <section class="section" id="proposals">
       <div class="section-heading">
-        <div><div class="eyebrow">PROPOSAL EXPLORER</div><h2>Signals worth participating in.</h2></div>
+        <div>
+          <div class="eyebrow">PROPOSAL EXPLORER</div>
+          <h2>Signals worth participating in.</h2>
+        </div>
         <button class="btn btn-primary" id="createBtn">+ New Proposal</button>
       </div>
       <div class="filter-row">
@@ -101,24 +128,52 @@
 
     <section class="section commit-section" id="commit">
       <div class="section-heading">
-        <div><div class="eyebrow">ANTI-COLLUSION MECHANISM</div><h2>Why commit-reveal?</h2></div>
-        <p>The vote is hidden during the commitment phase, preventing participants from simply following visible early results.</p>
+        <div>
+          <div class="eyebrow">ANTI-COLLUSION MECHANISM</div>
+          <h2>Why commit-reveal?</h2>
+        </div>
+        <p>The vote is hidden during the commitment phase, preventing participants from simply following visible early
+          results.</p>
       </div>
       <div class="flow-grid">
-        <div class="flow-card glass"><div class="flow-number">01</div><h3>Commit Phase</h3><p>Your vote is hidden behind a cryptographic commitment.</p><div class="code-pill">vote + secret → hash</div></div>
+        <div class="flow-card glass">
+          <div class="flow-number">01</div>
+          <h3>Commit Phase</h3>
+          <p>Your vote is hidden behind a cryptographic commitment.</p>
+          <div class="code-pill">vote + secret → hash</div>
+        </div>
         <div class="flow-arrow">→</div>
-        <div class="flow-card glass"><div class="flow-number">02</div><h3>Reveal Phase</h3><p>You reveal the original vote and secret after commitments close.</p><div class="code-pill">vote + secret → reveal</div></div>
+        <div class="flow-card glass">
+          <div class="flow-number">02</div>
+          <h3>Reveal Phase</h3>
+          <p>You reveal the original vote and secret after commitments close.</p>
+          <div class="code-pill">vote + secret → reveal</div>
+        </div>
         <div class="flow-arrow">→</div>
-        <div class="flow-card glass"><div class="flow-number">03</div><h3>Verification</h3><p>The system recalculates the hash and checks that it matches.</p><div class="code-pill">hash === commitment ✓</div></div>
+        <div class="flow-card glass">
+          <div class="flow-number">03</div>
+          <h3>Verification</h3>
+          <p>The system recalculates the hash and checks that it matches.</p>
+          <div class="code-pill">hash === commitment ✓</div>
+        </div>
       </div>
     </section>
 
     <section class="section mechanism-demo">
       <div class="demo-panel glass">
-        <div class="demo-copy"><div class="eyebrow">LIVE DEMONSTRATION</div><h2>Commit a signal privately.</h2><p>Pick an option, generate a random secret and create a browser-side SHA-256 commitment. Nothing is sent to a server.</p></div>
+        <div class="demo-copy">
+          <div class="eyebrow">LIVE DEMONSTRATION</div>
+          <h2>Commit a signal privately.</h2>
+          <p>Pick an option, generate a random secret and create a browser-side SHA-256 commitment. Nothing is sent to a
+            server.</p>
+        </div>
         <div class="commit-demo">
           <label for="demoVote">Your signal</label>
-          <select id="demoVote"><option>YES</option><option>NO</option><option>ABSTAIN</option></select>
+          <select id="demoVote">
+            <option>YES</option>
+            <option>NO</option>
+            <option>ABSTAIN</option>
+          </select>
           <button class="btn btn-primary" id="commitDemoBtn">Generate Commitment</button>
           <div id="commitResult" class="hash-box hidden"></div>
         </div>
@@ -126,7 +181,14 @@
     </section>
 
     <section class="section quadratic" id="quadratic">
-      <div class="section-heading"><div><div class="eyebrow">SIGNALING MODEL</div><h2>Quadratic signaling.</h2></div><p>Influence can be expressed with a cost that grows quadratically. This is a demonstration, not a guarantee of Sybil resistance.</p></div>
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">SIGNALING MODEL</div>
+          <h2>Quadratic signaling.</h2>
+        </div>
+        <p>Influence can be expressed with a cost that grows quadratically. This is a demonstration, not a guarantee of
+          Sybil resistance.</p>
+      </div>
       <div class="quadratic-grid">
         <div class="slider-panel glass">
           <label for="signalSlider">Signal Strength <output id="signalOutput">4</output></label>
@@ -145,62 +207,134 @@
     </section>
 
     <section class="section analytics-section" id="analytics">
-      <div class="section-heading"><div><div class="eyebrow">CONSENSUS ANALYTICS</div><h2>Read the signal, not the noise.</h2></div></div>
-      <div class="analytics-grid">
-        <div class="consensus-card glass"><div class="ring" id="consensusRing"><span>78<small>%</small></span></div><h3>Consensus Score</h3><p>Strong agreement among revealed signals.</p></div>
-        <div class="metrics-card glass">
-          <div class="metric"><span>Participation</span><strong>64%</strong><div class="mini-bar"><i style="width:64%"></i></div></div>
-          <div class="metric"><span>Signal Concentration</span><strong class="good">Low</strong><div class="mini-bar"><i style="width:28%"></i></div></div>
-          <div class="metric"><span>Whale Influence</span><strong>12%</strong><div class="mini-bar"><i style="width:12%"></i></div></div>
-          <div class="metric"><span>Result Confidence</span><strong class="good">High</strong><div class="mini-bar"><i style="width:84%"></i></div></div>
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">CONSENSUS ANALYTICS</div>
+          <h2>Read the signal, not the noise.</h2>
         </div>
-        <div class="distribution-card glass"><h3>Signal distribution</h3><div class="dist-row"><span>YES</span><div><i style="width:78%"></i></div><b>78%</b></div><div class="dist-row"><span>NO</span><div><i style="width:14%"></i></div><b>14%</b></div><div class="dist-row"><span>ABSTAIN</span><div><i style="width:8%"></i></div><b>8%</b></div></div>
+      </div>
+      <div class="analytics-grid">
+        <div class="consensus-card glass">
+          <div class="ring" id="consensusRing"><span>78<small>%</small></span></div>
+          <h3>Consensus Score</h3>
+          <p>Strong agreement among revealed signals.</p>
+        </div>
+        <div class="metrics-card glass">
+          <div class="metric"><span>Participation</span><strong>64%</strong>
+            <div class="mini-bar"><i style="width:64%"></i></div>
+          </div>
+          <div class="metric"><span>Signal Concentration</span><strong class="good">Low</strong>
+            <div class="mini-bar"><i style="width:28%"></i></div>
+          </div>
+          <div class="metric"><span>Whale Influence</span><strong>12%</strong>
+            <div class="mini-bar"><i style="width:12%"></i></div>
+          </div>
+          <div class="metric"><span>Result Confidence</span><strong class="good">High</strong>
+            <div class="mini-bar"><i style="width:84%"></i></div>
+          </div>
+        </div>
+        <div class="distribution-card glass">
+          <h3>Signal distribution</h3>
+          <div class="dist-row"><span>YES</span>
+            <div><i style="width:78%"></i></div><b>78%</b>
+          </div>
+          <div class="dist-row"><span>NO</span>
+            <div><i style="width:14%"></i></div><b>14%</b>
+          </div>
+          <div class="dist-row"><span>ABSTAIN</span>
+            <div><i style="width:8%"></i></div><b>8%</b>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section simulator-section" id="simulator">
       <div class="section-heading">
-        <div><div class="eyebrow">WOW FEATURE · CONCEPTUAL SIMULATION</div><h2>Can a whale control the vote?</h2></div>
-        <p>Simplified assumptions demonstrate how concentrated influence can change under a signaling model. This is not a security guarantee.</p>
+        <div>
+          <div class="eyebrow">WOW FEATURE · CONCEPTUAL SIMULATION</div>
+          <h2>Can a whale control the vote?</h2>
+        </div>
+        <p>Simplified assumptions demonstrate how concentrated influence can change under a signaling model. This is not
+          a security guarantee.</p>
       </div>
       <div class="simulator glass">
         <div class="sim-controls">
-          <label>Normal participants <output id="normalOut">500</output><input id="normalSlider" type="range" min="10" max="1000" value="500"></label>
-          <label>Coordinated wallets <output id="walletOut">20</output><input id="walletSlider" type="range" min="1" max="100" value="20"></label>
-          <label>Whale signal strength <output id="whaleOut">50</output><input id="whaleSlider" type="range" min="1" max="100" value="50"></label>
+          <label>Normal participants <output id="normalOut">500</output><input id="normalSlider" type="range" min="10"
+              max="1000" value="500"></label>
+          <label>Coordinated wallets <output id="walletOut">20</output><input id="walletSlider" type="range" min="1"
+              max="100" value="20"></label>
+          <label>Whale signal strength <output id="whaleOut">50</output><input id="whaleSlider" type="range" min="1"
+              max="100" value="50"></label>
         </div>
         <div class="sim-results">
-          <div class="sim-result"><span>Traditional Voting</span><strong id="traditionalInfluence">10%</strong><div class="big-bar"><i id="traditionalBar"></i></div><small>Influence of coordinated wallets</small></div>
+          <div class="sim-result"><span>Traditional Voting</span><strong id="traditionalInfluence">10%</strong>
+            <div class="big-bar"><i id="traditionalBar"></i></div><small>Influence of coordinated wallets</small>
+          </div>
           <div class="versus">VS</div>
-          <div class="sim-result highlight"><span>Our Signaling Model</span><strong id="modelInfluence">3%</strong><div class="big-bar"><i id="modelBar"></i></div><small>Conceptual reduced concentration</small></div>
+          <div class="sim-result highlight"><span>Our Signaling Model</span><strong id="modelInfluence">3%</strong>
+            <div class="big-bar"><i id="modelBar"></i></div><small>Conceptual reduced concentration</small>
+          </div>
         </div>
         <div class="warning">⚠ Simulation based on simplified assumptions — not a security guarantee.</div>
       </div>
     </section>
 
     <section class="section activity-section">
-      <div class="section-heading"><div><div class="eyebrow">YOUR COORDINATION FOOTPRINT</div><h2>My activity.</h2></div></div>
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">YOUR COORDINATION FOOTPRINT</div>
+          <h2>My activity.</h2>
+        </div>
+      </div>
       <div class="activity-grid">
-        <div class="profile-card glass"><div class="avatar">0x</div><h3 id="profileWallet">Demo participant</h3><span class="status-chip">DEMO WALLET</span><div class="profile-stats"><div><strong id="createdCount">3</strong><span>Proposals Created</span></div><div><strong id="submittedCount">8</strong><span>Signals Submitted</span></div><div><strong id="revealedCount">7</strong><span>Signals Revealed</span></div><div><strong id="rateCount">87%</strong><span>Participation</span></div></div></div>
-        <div class="feed-card glass"><h3>Recent activity</h3><div id="activityFeed"></div></div>
+        <div class="profile-card glass">
+          <div class="avatar">0x</div>
+          <h3 id="profileWallet">Demo participant</h3><span class="status-chip">DEMO WALLET</span>
+          <div class="profile-stats">
+            <div><strong id="createdCount">3</strong><span>Proposals Created</span></div>
+            <div><strong id="submittedCount">8</strong><span>Signals Submitted</span></div>
+            <div><strong id="revealedCount">7</strong><span>Signals Revealed</span></div>
+            <div><strong id="rateCount">87%</strong><span>Participation</span></div>
+          </div>
+        </div>
+        <div class="feed-card glass">
+          <h3>Recent activity</h3>
+          <div id="activityFeed"></div>
+        </div>
       </div>
     </section>
 
     <section class="section roadmap">
       <div class="roadmap-panel glass">
-        <div class="eyebrow">PROTOTYPE → PROTOCOL</div><h2>From prototype to on-chain protocol.</h2>
-        <div class="roadmap-flow"><div>HTML + CSS + JS</div><span>→</span><div>Smart Contracts</div><span>→</span><div>Ethereum Testnet</div><span>→</span><div>Real Wallets</div><span>→</span><div>Permissionless Coordination</div></div>
-        <p>In a future implementation, smart contracts could handle proposal creation, commitment storage, vote reveal, finalization and transparent verification.</p>
+        <div class="eyebrow">PROTOTYPE → PROTOCOL</div>
+        <h2>From prototype to on-chain protocol.</h2>
+        <div class="roadmap-flow">
+          <div>HTML + CSS + JS</div><span>→</span>
+          <div>Smart Contracts</div><span>→</span>
+          <div>Ethereum Testnet</div><span>→</span>
+          <div>Real Wallets</div><span>→</span>
+          <div>Permissionless Coordination</div>
+        </div>
+        <p>In a future implementation, smart contracts could handle proposal creation, commitment storage, vote reveal,
+          finalization and transparent verification.</p>
       </div>
     </section>
   </main>
 
-  <footer><div class="brand"><span class="brand-mark">D</span><span>Decentra<span>Signal</span></span></div><p>An experimental decentralized coordination layer.</p><div class="footer-links"><a href="#">GitHub</a><a href="#how">How it Works</a><a href="#analytics">Documentation</a><a href="#">About</a></div><button class="reset-btn" id="resetBtn">Reset Demo</button></footer>
+  <footer>
+    <div class="brand"><span class="brand-mark">D</span><span>Decentra<span>Signal</span></span></div>
+    <p>An experimental decentralized coordination layer.</p>
+    <div class="footer-links"><a href="#">GitHub</a><a href="#how">How it Works</a><a
+        href="#analytics">Documentation</a><a href="#">About</a></div><button class="reset-btn" id="resetBtn">Reset
+      Demo</button>
+  </footer>
 
   <div class="modal-backdrop hidden" id="modalBackdrop">
     <div class="modal" id="modalContent" role="dialog" aria-modal="true"></div>
   </div>
   <div class="toast-container" id="toastContainer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.15.0/dist/ethers.umd.min.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>
